@@ -1,0 +1,16 @@
+? Swing es multithreaded ? describe un ejemplo simple donde sería necesario usar
+varios hilos de ejecución.
+
+Si lo es. Los ejemplos claros son vistas al usuario que requieren de actualizaciones 
+en paralelo sin bloquear la operacion de la ventana. Por ejemplo una barra de progreso,
+ o actualizar parte de la informacion sin intervencion del usuario ( un log de procesos 
+ por ejemplo, un reloj, etc).
+
+? Swing es thread-safe ? ¿Qué precauciones deben tomarse ?
+No es thread safe. Si se quiere utilizar varios hilos, se deben lanzar implementar la clase 
+SwingUtilities o los hilos trabajadores implementando SwingWorker
+
+? ¿Qué es el Event Dispatch Thread ? ¿Cómo se usa ?
+Es el encargado de disparar todos los eventos relacionados con las ventanas que construimos.
+Se utiliza agregando listeners en las acciones que necesitemos intervenir (clik del mouse, 
+pasar con el cursor por arriba de un componente, capturar el uso del teclado, etc).

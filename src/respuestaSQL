@@ -1,0 +1,26 @@
+Sean los siguientes esquemas relacionales:
+
+	Vuelo(VueloNro, Desde, Hacia, Distancia, Partida, Arribo, Precio)
+	Aeronave(AId, ANombre, Rango)
+	Certificado(EId, AId)
+	Empleado(EId, Enombre, Sueldo)
+	
+La relación Empleado contiene datos de todos los empleados de la compañía, entre
+ellos los pilotos.
+En la relación Certificado solo figuran los pilotos certificados para volar una
+determinada aeronave.
+Responder la siguiente consulta en SQL:
+“Listar los nombres de los pilotos que pueden volar aeronaves con rango de crucero
+mayor a 5000 millas pero que solo está certificado con aviones Boeing”
+
+select Enombre from (
+Select Enombre, aNombre 
+from Empleado e, Certificado c, Aeronave a
+where e.Eid = c.Eid
+and   c.AId = a.AId
+and   a.Rango > 5000
+group by Enombre, aNombre 
+having count(*)=1)
+where a.ANombre='Boeing'
+
+
